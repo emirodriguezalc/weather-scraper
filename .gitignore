@@ -1,0 +1,35 @@
+# Byte-compiled / optimized Python files
+*.pyc
+__pycache__/
+
+# Environment-related files
+.env
+venv/
+.env.local
+.env.*.local
+
+# Dependency directories
+dist/
+build/
+lib/
+
+# Distribution files
+*.egg-info/
+*.egg
+
+# IDE-specific files and directories
+.vscode/
+.idea/
+*.pydevproject
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*~
+*.bak
+*.cache
+*.out
+
+# OS-specific files
+.DS_Store
+Thumbs.db
