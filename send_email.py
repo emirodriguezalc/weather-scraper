@@ -6,7 +6,7 @@ from sib_api_v3_sdk.rest import ApiException
 def send_email(recipient_email, city):
     # Get weather and COVID-19 information
     weather_info = get_weather_info(city)
-    """ covid_info = get_covid_info(city) """
+    """ covid_info = get_covid_info(city) THIS KEY IS NOT AVAILABLE YET """
 
     # Initialize Sendinblue API client and configure email details
     configuration = sib_api_v3_sdk.Configuration()
