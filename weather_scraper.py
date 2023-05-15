@@ -10,7 +10,6 @@ def get_weather_info(country):
     data = response.json()
 
     # Extract weather information from the response
-    print(data)
     temperature = data["main"]["temp"]
     humidity = data["main"]["humidity"]
     description = data["weather"][0]["description"]

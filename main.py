@@ -11,7 +11,7 @@ def main():
     # Automate form submission
     form_url = 'https://docs.google.com/forms/d/e/1FAIpQLSe9YtigyykI73JBWkhi_EMPEdyTBYfNqMyKRfkBcxOBJHVCbA/viewform'
 
-    """ automate_form_submission(form_url) NOT WORKING """
+    automate_form_submission(form_url)
 
 if __name__ == '__main__':
     main()

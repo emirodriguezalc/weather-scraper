@@ -1,39 +1,46 @@
+import time
 from bs4 import BeautifulSoup
 import requests
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from faker import Faker
+from selenium.webdriver.chrome.options import Options
 
 def automate_form_submission(form_url):
-    # Send GET request to form URL to get form ID
-    response = requests.get(form_url)
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    name_input = soup.find('input', {'aria-labelledby': 'i1'})
-    email_input = soup.find('input', {'aria-labelledby': 'i5'})
-    country_input = soup.find('input', {'aria-labelledby': 'i9'})
 
     # Generate dummy data
     fake = Faker()
     fake_name = fake.name()
     fake_email = fake.email()
     fake_country = fake.country()
-
-    # Fill the form inputs with dummy values
-    name_input['data-initial-value'] = fake_name
-    email_input['data-initial-value'] = fake_email
-    country_input['data-initial-value'] = fake_country
     
-    print(name_input)
 
-    # Send POST request to form action URL with form data
-    response = requests.post(form_url, data={
-        name_input,
-        email_input,
-        country_input,
-    })
-    if response.status_code == 200:
-        print('Form submitted successfully.')
-    else:
-        print('Error submitting form.')
+    # Create ChromeOptions object
+    chrome_options = Options()
+
+    # Enable incognito mode
+    chrome_options.add_argument("--incognito")
+
+    # Create a new Chrome browser instance with incognito mode enabled
+    browser = webdriver.Chrome(options=chrome_options)
+
+    # navigate to the URL of the form
+    browser.get(form_url)
+    # find the input fields by their IDs and fill them with data
+    time.sleep(3)
+    input1 = browser.find_element('xpath','//*[@id="mG61Hd"]/div[2]/div/div[2]/div[1]/div/div/div[2]/div/div[1]/div/div[1]/input')
+    input1.send_keys(fake_name)
+    input2 = browser.find_element('xpath','//*[@id="mG61Hd"]/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div/div[1]/input')
+    input2.send_keys(fake_email)
+    input3 = browser.find_element('xpath','//*[@id="mG61Hd"]/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div/div[1]/input')
+    input3.send_keys(fake_country)
+
+    # submit the form
+    submit_button = browser.find_element('xpath', '//*[@id="mG61Hd"]/div[2]/div/div[3]/div[1]/div[1]/div/span/span')
+    submit_button.click()
+
+    # close the browser
+    browser.quit()
+    return
+
    
